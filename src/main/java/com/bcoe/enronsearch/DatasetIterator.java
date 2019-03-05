@@ -2,7 +2,6 @@ package com.bcoe.enronsearch;
 
 import javax.mail.*;
 import javax.mail.internet.*;
-import javax.mail.util.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,7 +14,6 @@ import org.apache.commons.compress.archivers.tar.*;
 import java.io.File;
 import java.io.InputStream;
 import java.io.IOException;
-import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -27,10 +25,9 @@ message objects for indexing.
 public class DatasetIterator 
 {
 
-  private static String gzipInputPath = "./dataset/enron_mail.tgz";
-  private static String tarOutputPath = "./dataset/enron_mail.tar";
+  private static final String gzipInputPath = "./dataset/enron_mail.tgz";
+  private static final String tarOutputPath = "./dataset/enron_mail.tar";
   private TarArchiveInputStream tarInputStream;
-  private TarArchiveEntry maildirEntry;
 
   public DatasetIterator() {
     try {
@@ -110,7 +107,7 @@ public class DatasetIterator
     return null;
   }
 
-  private static void unGzip() throws FileNotFoundException, IOException {
+  private static void unGzip() throws IOException {
     System.out.println("unzipping dataset.");
 
     final File outputFile = new File(tarOutputPath);
